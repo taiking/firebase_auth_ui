@@ -8,9 +8,10 @@ class FirebaseUser {
   bool isAnonymous;
   bool isNewUser;
   MetaData metaData;
+  String idToken;
 
   FirebaseUser(this.uid, this.displayName, this.email, this.phoneNumber,
-      this.photoUri, this.providerId, this.metaData,
+      this.photoUri, this.providerId, this.metaData, this.idToken,
       {this.isAnonymous = false, this.isNewUser});
 
   Map<String, dynamic> toJSON() {
@@ -24,6 +25,7 @@ class FirebaseUser {
       "isAnonymous": isAnonymous,
       "isNewUser": isNewUser,
       "metaData": metaData.toJSON(),
+      "idToken": idToken
     };
   }
 }

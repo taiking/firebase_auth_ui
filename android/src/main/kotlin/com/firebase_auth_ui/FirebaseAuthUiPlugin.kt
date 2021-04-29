@@ -76,7 +76,10 @@ class FirebaseAuthUiPlugin(private val activity: Activity) : MethodCallHandler, 
                     }
                     userMap["metadata"] = metadataMap
 
-                    result?.success(userMap)
+                    user.getIdToken(true).addOnCompleteListener { task ->
+                        userMap["id_token"] = task.result?.token ?: ""
+                        result?.success(userMap)
+                    }
                 } else {
                     result?.error(ERROR_UNKNOWN, "Unknown error occurred.", null)
                 }

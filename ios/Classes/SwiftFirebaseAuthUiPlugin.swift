@@ -126,7 +126,11 @@ public class SwiftFirebaseAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate
                     "is_new_user": authDataResult?.additionalUserInfo?.isNewUser ?? false,
                     "metadata": metaDataDictionary,
                 ]
-                result?(userDisctionary)
+                
+                user?.getIDToken { idToken, error in
+                    userDisctionary["id_token"] = idToken
+                    result?(userDisctionary)
+                }
             }
         }
 
