@@ -127,9 +127,9 @@ public class SwiftFirebaseAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate
                     "metadata": metaDataDictionary,
                 ]
                 
-                user?.getIDToken { idToken, error in
+                user?.getIDToken { [weak self] idToken, error in
                     userDisctionary["id_token"] = idToken
-                    result?(userDisctionary)
+                    self?.result?(userDisctionary)
                 }
             }
         }
